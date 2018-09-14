@@ -1,0 +1,56 @@
+<!--index.wxml-->
+<!--pages/user/index.wxml-->
+<view hidden='{{boolean}}'>
+	<view wx:if="{{isLogin == 1}}">
+		<!-- 个人信息 -->
+		<view class='infomation'>
+			<!-- 基本信息 -->
+			<view class="gameTitle">
+				<navigator hover-class="none" href=""><image src="{{dataList.head_photo}}"></image></navigator>
+				<view>
+					<view class="gameName"><navigator hover-class="none" href="">{{dataList.username}}</navigator></view>
+					<view class="gameSummary" wx:if="{{dataList.title == ''}}"><navigator hover-class="none" href="">这个玩家很懒，什么也没留下</navigator></view>
+					<view class="gameSummary" wx:if="{{dataList.title != ''}}"><navigator hover-class="none" href="">{{dataList.title}}</navigator></view>
+				</view>
+			</view>
+			<!-- 粉丝等 -->
+			<view class='number'>
+				<navigator hover-class="none">
+					<view>{{dataList.follow_num}}</view>
+					<view>关注</view>
+				</navigator>
+				<navigator hover-class="none">
+					<view>{{dataList.fans_num}}</view>
+					<view>粉丝</view>
+				</navigator>	
+				<navigator hover-class="none">
+					<view>{{dataList.level_value}}</view>
+					<view>积分</view>
+				</navigator>			
+			</view>		
+		</view>
+		<!-- “我的”列表 -->
+		<view class='myList'>
+			<view class='list'>
+				<navigator hover-class="none">推荐</navigator>
+				<navigator hover-class="none">评论</navigator>
+				<navigator hover-class="none">收藏</navigator>
+				<navigator hover-class="none">商城</navigator>
+				<navigator hover-class="none" bindtap='loginOut'>退出</navigator>
+			</view>
+		</view> 
+	</view>
+	<view wx:if="{{isLogin == 2}}">
+		<view class='bgBox'>
+			<image class='bg' src='../../img/bg.jpg'></image>
+			<image class='image' src='../../img/image.jpg'></image>
+		</view>
+		<view class="unLogin">
+			<view>登录后，你的个人主页等资料</view>
+			<view>会显示在这里，展示给他人</view>
+			<button bindtap='login'>登录</button> 
+		</view>
+	</view>
+</view>
+ 
+ 
