@@ -4,4 +4,5 @@ from users.models import Users
 class UserSerializer(ModelSerializer):
     class Meta:
         model = Users
-        fileds = ('name', 'openid', 'token', 'sex')
+        fileds = ('nick_name', 'gender', 'language', 'country',
+                  'province', 'city', 'open_id', 'avatar_url', 'register_date')
