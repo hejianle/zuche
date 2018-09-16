@@ -2,8 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Users(models.Model):
-    id = models.CharField()
-    email = models.EmailField()
-    username = models.CharField()
-    password = models.CharField()
-    login_time = models.CharField()
+    name = models.CharField(max_length=64)
+    openid = models.CharField(max_length=40)
+    sex = models.CharField(max_length=10)
+    token = models.CharField(max_length=64)
