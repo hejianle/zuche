@@ -6,6 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from wxutils import WXBizDataCrypt
 from wxutils.django_jwt_session_auth import jwt_login
 from users.models import User
+from utils.cache_utils import redis_cache
 
 appid =  'wxd8f471f80a7122e4'
 app_secret = 'ab66ea663c909a770b00d686ae0b51e8'
@@ -28,6 +29,7 @@ def login(request):
             user = register(user_info)
         token = jwt_login(user, request)
         user_info['token'] = token.decode()
+        redis_cache.cache_token(user_info['token'], open_id)
         print(user_info)
         return JsonResponse(user_info)
 
