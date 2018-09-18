@@ -4,5 +4,6 @@
 *.iml
 *.ipr
 
+*/__pycache__/*
 
 ./venv.*

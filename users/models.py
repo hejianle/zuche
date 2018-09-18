@@ -15,3 +15,18 @@ class User(models.Model):
 
     def __str__(self):
         return self.nick_name
+
+
+class Bicycle(models.Model):
+    bicycle_id = models.CharField(max_length=20)
+    create_time = models.DateTimeField(auto_now_add=True, editable=False)
+    is_active = models.BooleanField(default=True)
+    is_available = models.BooleanField(default=True)
+
+
+class Deal(models.Model):
+    bicycle_id = models.CharField(max_length=20)
+    open_id = models.CharField(max_length=20)
+    start_date = models.DateTimeField()
+    spent_time = models.FloatField()
+    cost = models.FloatField()

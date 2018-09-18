@@ -1,10 +1,12 @@
 # Create your views here.
 import requests
+from django.core.cache import cache
 from django.http import JsonResponse
 from django.core.exceptions import ObjectDoesNotExist
+
 from wxutils import WXBizDataCrypt
 from wxutils.django_jwt_session_auth import jwt_login
-from users.models import User
+from users.models import User, Bicycle
 from utils.cache_utils import redis_cache
 
 appid = 'wxd8f471f80a7122e4'
@@ -53,3 +55,18 @@ def get_session_info(code, appid, secret):
     response = requests.get(base_url, params=query_obj)
     data = response.json()
     return data
+
+
+def rent_bicycle(request):
+
+    bicycle_id = request.data.get('bicycle_id')
+    open_id = request.data.get('open_id')
+
+    if not cache.hget(bicycle_id, open_id):
+        end_time = request.data.get("end_time")
+        cost = (end_time - cache.hget(bicycle_id, open_id)) * 1
+
+
+    else:
+        cache.hput(bicycle_id, open_id, request.data.get('start_time'))
+        return 'successfully!'

@@ -3,7 +3,7 @@
 ###start a local mysql server
 MYSQL_CONTAINER_NAME=bicycle-db
 if [ "$(docker ps -q -f name=$CONTAINER_NAME)" ]; then
-    docker rm -f MYSQL_CONTAINER_NAME
+    docker rm -f $MYSQL_CONTAINER_NAME
 fi
 
 docker run -d --restart always --name $MYSQL_CONTAINER_NAME -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=bicycle-db -v ~/data/bicycle-db:/var/lib/mysql mysql:5.6.40 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
